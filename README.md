@@ -17,6 +17,7 @@ Run following command:
 - ```composer install```
 - ```php artisan key:generate```
 - ```php artisan migrate```
+- ```php artisan storage:link```
 
 Open your favourite browser and access: ```http://localhost```
 Everything is 200.

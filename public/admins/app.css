@@ -1,0 +1,21 @@
+#remove-upload {
+    position: absolute;
+    top: 46px;
+    right: 17px;
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    color: red;
+    line-height:0;
+    padding: 0;
+}
+
+.image-table {
+    max-width: 100%;
+}
+
+tr td {
+    vertical-align: middle!important;
+}
+

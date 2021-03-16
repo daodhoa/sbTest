@@ -14,20 +14,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
-    'middleware' => 'auth'
-], function() {
-    Route::get('/', 'WelcomeController@index')->name('welcome');
-    Route::get('/logout', function () {
-        Auth::logout();
-        return redirect()->route('login.index');
-    })->name('logout');
-});
+//Route::group([
+//    'middleware' => 'auth'
+//], function() {
+//    Route::get('/', 'WelcomeController@index')->name('welcome');
+//    Route::get('/logout', function () {
+//        Auth::logout();
+//        return redirect()->route('login.index');
+//    })->name('logout');
+//});
+//
+//Route::group([
+//    'middleware' => 'guest'
+//], function () {
+//    Route::get('/sign-in', 'LoginController@index')->name('login.index');
+//    Route::post('/sign-in', 'LoginController@attemptLogin')->name('login.attempt');
+//    Route::post('/verify', 'LoginController@verifyLogin')->name('login.verify');
+//});
 
 Route::group([
-    'middleware' => 'guest'
-], function () {
-    Route::get('/sign-in', 'LoginController@index')->name('login.index');
-    Route::post('/sign-in', 'LoginController@attemptLogin')->name('login.attempt');
-    Route::post('/verify', 'LoginController@verifyLogin')->name('login.verify');
+   'prefix' => 'admin',
+   'namespace' => 'Admin'
+], function() {
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+    Route::group([
+       'prefix' => 'categories',
+        'namespace' => 'Category'
+    ], function() {
+        Route::get('/', 'IndexController@index')->name('admin.categories.index');
+        Route::get('/create', 'CreateController@index')->name('admin.categories.create');
+        Route::post('/', 'StoreController@main')->name('admin.categories.store');
+    });
 });

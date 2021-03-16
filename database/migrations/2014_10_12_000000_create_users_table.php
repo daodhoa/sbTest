@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
+            $table->string('password');
+            $table->unsignedTinyInteger('role')->default(0)->comment('0: users, 1: admin');
+            $table->unsignedTinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }
