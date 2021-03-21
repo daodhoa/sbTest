@@ -1,17 +1,17 @@
 @extends('admin.layout')
 
-@section('title', 'categories')
+@section('title', 'Products')
 
 @section('breadcrumb')
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Category</h4>
+                <h4 class="page-title">Products</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Category</li>
+                            <li class="breadcrumb-item active" aria-current="page">Products</li>
                         </ol>
                     </nav>
                 </div>
@@ -46,10 +46,10 @@
                 <div class="card-body">
                     <div class="col-12 d-flex mb-2">
                         <div class="col-6">
-                            <h4 class="card-title">All Categories</h4>
+                            <h4 class="card-title">All Products</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Add Category</a>
+                            <a href="{{ route('admin.products.create') }}" class="btn btn-primary">Add Products</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -63,24 +63,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td class="align-content-center">{{ $category->id }}</td>
-                                        <td>
-                                            <div style="width: 80px">
-                                                <img class="image-table" height="40px" src="{{ asset('').$category->images->first()->path }}"  alt="category img">
-                                            </div>
+                            @foreach($products as $product)
+                                <tr>
+                                    <td class="align-content-center">{{ $product->id }}</td>
+                                    <td>
+                                        <div style="width: 80px">
+                                            <img class="image-table" height="40px" src="{{ asset('').$product->images->first()->path }}"  alt="product img">
+                                        </div>
 
-                                        </td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>
-                                            <div class="d-flex justify-content-around">
-                                                <a href="#"><i class="fa fa-edit"></i></a>
-                                                <a href="#"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    </td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-around">
+                                            <a href="#"><i class="fa fa-edit"></i></a>
+                                            <a href="#"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
