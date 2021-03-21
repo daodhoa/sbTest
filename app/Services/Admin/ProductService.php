@@ -36,6 +36,36 @@ class ProductService
 
     public function store($product): bool
     {
+        $imagePath = $this->saveCategoryImage($product['image']);
+        $savedImage = $this->imageRepository->create([
+            'path' => $imagePath
+        ]);
+        $savedProduct = $this->productRepository->create([
+            'code' => 'CODE-123',
+            'name' => $product['name'],
+            'origin' => $product['origin'],
+            'category_id' => $product['category'],
+            'alcohol' => $product['alcohol'],
+            'volume' => $product['volume'],
+            'price' => $product['price'],
+            'quantity' => $product['quantity']
+        ]);
 
+        $this->productImageRepository->create([
+            'product_id' => $savedProduct->id,
+            'image_id' => $savedImage->id
+        ]);
+
+        return true;
+    }
+
+    /**
+     * @param $image $request->file('image')
+     * @return string filePath
+     */
+    private function saveCategoryImage($image): string
+    {
+        $this->imageService->saveImage(self::STORAGE_DIRECTORY, $image, $image->getClientOriginalName());
+        return self::PUBLIC_DIRECTORY.$image->getClientOriginalName();
     }
 }

@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Services\Admin\CategoryService;
+use App\Services\Admin\ProductService;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    private $categoryService;
+    private $productService;
 
-    public function __construct(CategoryService $categoryService) {
-        $this->categoryService = $categoryService;
+    public function __construct(ProductService $productService) {
+        $this->productService = $productService;
     }
 
     public function main(Request $request) {
-        //$categories = $this->categoryService->listCategories();
-
+        $products = $this->productService->listProducts();
+        return view('admin.product.index', ['products' => $products]);
     }
 }
