@@ -45,4 +45,13 @@ Route::group([
         Route::get('/create', 'CreateController@index')->name('admin.categories.create');
         Route::post('/', 'StoreController@main')->name('admin.categories.store');
     });
+
+    Route::group([
+        'prefix' => 'products',
+        'namespace' => 'Product'
+    ], function() {
+        Route::get('/', 'IndexController@main')->name('admin.products.index');
+        Route::get('/create', 'CreateController@main')->name('admin.products.create');
+        Route::post('/', 'StoreController@main')->name('admin.products.store');
+    });
 });
