@@ -44,6 +44,9 @@ Route::group([
         Route::get('/', 'IndexController@index')->name('admin.categories.index');
         Route::get('/create', 'CreateController@index')->name('admin.categories.create');
         Route::post('/', 'StoreController@main')->name('admin.categories.store');
+        Route::get('/edit/{id}', 'EditController@getEdit')->name('admin.categories.edit');
+        Route::post('/edit/{id}', 'EditController@postEdit')->name('admin.categories.update');
+        Route::get('delete/{id}', 'DeleteController@getDelete')->name('admin.categories.destroy');
     });
 
     Route::group([
@@ -55,3 +58,16 @@ Route::group([
         Route::post('/', 'StoreController@main')->name('admin.products.store');
     });
 });
+Route::group([
+    'namespace' => 'User'
+ ], function() {
+    Route::get('/index', 'HomeController@index')->name('user.index');
+    Route::group([
+        'prefix' => 'product',
+         'namespace' => 'Product'
+    ], function() {
+        Route::get('/single-product', 'ProductController@singleProduct')->name('user.product.single');
+        Route::get('/list-product', 'ProductController@listProduct')->name('user.product.list');
+    });
+});
+

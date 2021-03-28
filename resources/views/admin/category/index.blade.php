@@ -75,8 +75,8 @@
                                         <td>{{ $category->name }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <a href="#"><i class="fa fa-edit"></i></a>
-                                                <a href="#"><i class="fa fa-trash"></i></a>
+                                                <a href="{{ Route('admin.categories.edit', $category['id']) }}"><i class="fa fa-edit"></i></a>
+                                                <a onclick="return xacnhanxoa('Bạn có muốn xóa không ?')" href="{{ Route('admin.categories.destroy', $category['id']) }}"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
